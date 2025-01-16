@@ -1,0 +1,18 @@
+rules:
+  - id: hardcoded-credentials
+    patterns:
+      - pattern: string $PWD = "$CRED"
+    message: Avoid hardcoding credentials.
+    severity: ERROR
+
+  - id: sql-injection
+    patterns:
+      - pattern: string $QUERY = $"SELECT * FROM $TABLE WHERE $COLUMN = '{$VALUE}'"
+    message: Possible SQL injection.
+    severity: WARNING
+
+  - id: insecure-random
+    patterns:
+      - pattern: Random $RANDOM = new Random()
+    message: Use a cryptographically secure random number generator.
+    severity: WARNING
